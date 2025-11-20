@@ -21,6 +21,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
   const menuItems = [
     { name: t('game'), path: '/game', icon: '🎮' },
+    { name: '塔羅占卜', path: '/tarot', icon: '🔮' },
     { name: '旅遊心得', path: '/blog/travel', icon: '✈️' },
     { name: '技術文章', path: '/blog/tech', icon: '💻' },
   ];

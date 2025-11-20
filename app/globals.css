@@ -185,3 +185,31 @@ body > div[style*="position: fixed"][style*="right"] {
   border-radius: 0.5rem;
   margin: 1.5rem 0;
 }
+
+/* 塔羅牌翻轉動畫 */
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes card-flip {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+/* 隱藏滾動條但保持滾動功能 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
