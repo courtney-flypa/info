@@ -1,21 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getCurrentNickname } from '@/utils/storage';
 import { useLocale } from '@/contexts/LocaleContext';
 
 export default function Home() {
   const router = useRouter();
   const { t } = useLocale();
-
-  useEffect(() => {
-    // 檢查是否已有暱稱，有的話直接導向遊戲
-    const current = getCurrentNickname();
-    if (current) {
-      router.push('/game');
-    }
-  }, [router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-4 relative overflow-hidden">
@@ -60,10 +50,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
         </button>
         
-        <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-          <span>💝</span>
-          <span>{t('nicknamePrompt')}</span>
-        </p>
       </div>
     </div>
   );

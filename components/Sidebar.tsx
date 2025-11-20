@@ -1,8 +1,6 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { getCurrentNickname } from '@/utils/storage';
-import { useEffect, useState } from 'react';
 import { useLocale } from '@/contexts/LocaleContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -14,12 +12,7 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const [nickname, setNickname] = useState<string | null>(null);
   const { t } = useLocale();
-
-  useEffect(() => {
-    setNickname(getCurrentNickname());
-  }, [pathname]);
 
   // 首頁不顯示側邊欄
   if (pathname === '/') {
@@ -28,7 +21,6 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
   const menuItems = [
     { name: t('game'), path: '/game', icon: '🎮' },
-    { name: t('records'), path: '/records', icon: '📊' },
   ];
 
   return (
@@ -89,20 +81,12 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
             </div>
           </nav>
 
-          {/* 語言切換和使用者資訊 */}
+          {/* 語言切換 */}
           <div className="p-4 border-t border-gray-200 space-y-3 relative overflow-visible">
             {isOpen && (
               <div className="relative z-[100]">
                 <div className="text-xs font-medium text-gray-500 mb-2">語言</div>
                 <LanguageSwitcher />
-              </div>
-            )}
-            {nickname && (
-              <div className="bg-gray-50 rounded-lg p-3">
-                <div className="text-xs font-medium text-gray-500 mb-1">{t('user')}</div>
-                <div className="text-sm font-medium text-gray-800 truncate">
-                  {nickname}
-                </div>
               </div>
             )}
           </div>

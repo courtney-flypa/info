@@ -1,6 +1,6 @@
 import { Question, GameMode } from '@/types/game';
 
-export const databases: Record<GameMode, Question[]> = {
+export const databases: Partial<Record<GameMode, Question[]>> = {
   hiragana: [
     { q: 'あ', a: 'a' }, { q: 'い', a: 'i' }, { q: 'う', a: 'u' }, { q: 'え', a: 'e' }, { q: 'お', a: 'o' },
     { q: 'か', a: 'ka' }, { q: 'き', a: 'ki' }, { q: 'く', a: 'ku' }, { q: 'け', a: 'ke' }, { q: 'こ', a: 'ko' },
@@ -84,7 +84,7 @@ export const databases: Record<GameMode, Question[]> = {
 };
 
 // 遊戲模式顯示名稱
-export const modeNames: Record<GameMode, string> = {
+export const modeNames: Partial<Record<GameMode, string>> = {
   hiragana: '平假名',
   katakana: '片假名',
   n5_words: 'N5 單字',
@@ -94,7 +94,7 @@ export const modeNames: Record<GameMode, string> = {
 };
 
 // 遊戲模式圖示
-export const modeIcons: Record<GameMode, string> = {
+export const modeIcons: Partial<Record<GameMode, string>> = {
   hiragana: 'あ',
   katakana: 'ア',
   n5_words: '📘',

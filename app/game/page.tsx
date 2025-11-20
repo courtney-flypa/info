@@ -1,56 +1,45 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getCurrentNickname, setCurrentNickname } from '@/utils/storage';
-import MenuScreen from '@/components/MenuScreen';
-import NicknameModal from '@/components/NicknameModal';
-import { GameMode } from '@/types/game';
+import { Language } from '@/types/game';
 
 export default function GamePage() {
   const router = useRouter();
-  const [nickname, setNickname] = useState<string | null>(null);
-  const [showNicknameModal, setShowNicknameModal] = useState(false);
 
-  useEffect(() => {
-    const current = getCurrentNickname();
-    if (!current) {
-      // 沒有暱稱時顯示輸入框
-      setShowNicknameModal(true);
-    } else {
-      setNickname(current);
-    }
-  }, []);
+  const languages: { lang: Language; name: string; flag: string; color: string }[] = [
+    { lang: 'japanese', name: '日文', flag: '🇯🇵', color: 'from-pink-400 via-purple-400 to-pink-400' },
+    { lang: 'korean', name: '韓文', flag: '🇰🇷', color: 'from-blue-400 via-cyan-400 to-blue-400' },
+    { lang: 'thai', name: '泰文', flag: '🇹🇭', color: 'from-orange-400 via-red-400 to-orange-400' }
+  ];
 
-  const handleNicknameConfirm = (newNickname: string) => {
-    setCurrentNickname(newNickname);
-    setNickname(newNickname);
-    setShowNicknameModal(false);
-  };
-
-  const handleSelectMode = (mode: GameMode) => {
-    // 檢查是否有暱稱，沒有就顯示輸入框
-    const current = getCurrentNickname();
-    if (!current) {
-      setShowNicknameModal(true);
-      return;
-    }
-    router.push(`/game/${mode}`);
+  const handleSelectLanguage = (language: Language) => {
+    router.push(`/game/${language}`);
   };
 
   return (
-    <>
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 pt-20">
-        <div className="bg-white/80 backdrop-blur-sm p-6 rounded-3xl shadow-xl w-full max-w-md min-h-[700px] flex flex-col border border-white/20">
-          <MenuScreen onSelectMode={handleSelectMode} />
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 p-4 pt-20">
+      <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-xl w-full max-w-md min-h-[500px] flex flex-col border border-white/20">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+            選擇語言
+          </h1>
+          <p className="text-gray-600">選擇您想學習的語言</p>
+        </div>
+
+        <div className="flex-1 flex flex-col gap-4">
+          {languages.map(({ lang, name, flag, color }) => (
+            <button
+              key={lang}
+              onClick={() => handleSelectLanguage(lang)}
+              className={`w-full bg-gradient-to-r ${color} text-white py-6 rounded-2xl text-xl font-bold hover:shadow-xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3`}
+            >
+              <span className="text-3xl">{flag}</span>
+              <span>{name}</span>
+            </button>
+          ))}
         </div>
       </div>
-      
-      <NicknameModal
-        isOpen={showNicknameModal}
-        onConfirm={handleNicknameConfirm}
-      />
-    </>
+    </div>
   );
 }
 

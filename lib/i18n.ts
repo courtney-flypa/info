@@ -61,7 +61,15 @@ export const translations = {
       n5_words: 'N5 單字',
       phrases: '日常短句',
       numbers: '數字日期',
-      travel: '旅遊實用'
+      travel: '旅遊實用',
+      korean_consonants: '韓文子音',
+      korean_vowels: '韓文母音',
+      korean_words: '韓文單字',
+      korean_phrases: '日常短句',
+      thai_consonants: '泰文子音',
+      thai_vowels: '泰文母音',
+      thai_words: '泰文單字',
+      thai_phrases: '日常短句'
     },
     resultMessages: {
       excellent: '太強了！你是日文大師！',
@@ -109,7 +117,15 @@ export const translations = {
       n5_words: 'N5 Words',
       phrases: 'Daily Phrases',
       numbers: 'Numbers & Dates',
-      travel: 'Travel Phrases'
+      travel: 'Travel Phrases',
+      korean_consonants: 'Korean Consonants',
+      korean_vowels: 'Korean Vowels',
+      korean_words: 'Korean Words',
+      korean_phrases: 'Daily Phrases',
+      thai_consonants: 'Thai Consonants',
+      thai_vowels: 'Thai Vowels',
+      thai_words: 'Thai Words',
+      thai_phrases: 'Daily Phrases'
     },
     resultMessages: {
       excellent: "Amazing! You're a Japanese master!",
@@ -157,7 +173,15 @@ export const translations = {
       n5_words: 'N5単語',
       phrases: '日常会話',
       numbers: '数字と日付',
-      travel: '旅行フレーズ'
+      travel: '旅行フレーズ',
+      korean_consonants: '韓国語子音',
+      korean_vowels: '韓国語母音',
+      korean_words: '韓国語単語',
+      korean_phrases: '日常会話',
+      thai_consonants: 'タイ語子音',
+      thai_vowels: 'タイ語母音',
+      thai_words: 'タイ語単語',
+      thai_phrases: '日常会話'
     },
     resultMessages: {
       excellent: 'すごい！あなたは日本語マスターです！',

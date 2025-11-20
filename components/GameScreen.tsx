@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Question, GameMode } from '@/types/game';
+import { Question, GameMode, Language } from '@/types/game';
 import QuestionCard from './QuestionCard';
 import OptionButton from './OptionButton';
 import { speak, stopSpeaking } from '@/utils/speech';
@@ -12,13 +12,22 @@ interface GameScreenProps {
   questions: Question[];
   onGameEnd: (score: number) => void;
   onGoHome: () => void;
+  language?: Language;
+}
+
+// 從模式推斷語言
+function getLanguageFromMode(mode: GameMode): Language {
+  if (mode.startsWith('korean_')) return 'korean';
+  if (mode.startsWith('thai_')) return 'thai';
+  return 'japanese';
 }
 
 const QUESTION_LIMIT = 10;
 const TIME_PER_QUESTION = 5000; // 5秒
 
-export default function GameScreen({ mode, questions, onGameEnd, onGoHome }: GameScreenProps) {
+export default function GameScreen({ mode, questions, onGameEnd, onGoHome, language }: GameScreenProps) {
   const { t } = useLocale();
+  const gameLanguage = language || getLanguageFromMode(mode);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -72,7 +81,7 @@ export default function GameScreen({ mode, questions, onGameEnd, onGoHome }: Gam
     setOptions(generateOptions(currentQuestion));
     
     // 播放語音
-    speak(currentQuestion.speech || currentQuestion.q);
+    speak(currentQuestion.speech || currentQuestion.q, gameLanguage);
 
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
@@ -143,7 +152,7 @@ export default function GameScreen({ mode, questions, onGameEnd, onGoHome }: Gam
       });
       
       // 再唸一次
-      speak(currentQuestion.speech || currentQuestion.q);
+      speak(currentQuestion.speech || currentQuestion.q, gameLanguage);
     } else {
       // 錯誤
       setCombo(0);
