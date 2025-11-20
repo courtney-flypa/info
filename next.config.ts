@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   // GitHub Pages 靜態導出配置
   output: 'export',
   // 如果部署到 username.github.io/repo-name，需要設置 basePath
-  // basePath: '/repo-name',
+  basePath: '/info',
   // 圖片優化配置（靜態導出不支持默認的圖片優化）
   images: {
     unoptimized: true,
