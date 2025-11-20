@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --soft-pink: #ffe5f1;
+  --soft-lavender: #f5f0ff;
+  --soft-peach: #fff0e8;
+  --soft-mint: #f0fff4;
+  --accent-pink: #ffb6d9;
+  --accent-lavender: #d4b3ff;
+  --accent-peach: #ffc9b3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-noto-sans-tc);
+}
+
+body {
+  background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #dbeafe 100%);
+  color: var(--foreground);
+  user-select: none;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 可愛女子風格 */
+.gradient-dreamy {
+  background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #dbeafe 100%);
+}
+
+.gradient-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* 可愛動畫 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* 隱藏 Next.js 開發指示器 */
+#__next-build-watcher,
+#__next-dev-overlay,
+.next-dev-overlay,
+[data-nextjs-toast],
+[data-nextjs-dialog],
+iframe[src*="__nextjs"],
+div[data-nextjs-dialog-overlay] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 隱藏 Next.js 右下角的浮動按鈕 */
+body > div[style*="position: fixed"][style*="bottom"],
+body > div[style*="position: fixed"][style*="right"] {
+  display: none !important;
+}
