@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Sidebar from './Sidebar';
+import SocialLinks from './SocialLinks';
 
 interface LayoutWrapperProps {
   children: React.ReactNode;
@@ -46,6 +47,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
       >
         {children}
       </main>
+      <SocialLinks />
     </div>
   );
 }
